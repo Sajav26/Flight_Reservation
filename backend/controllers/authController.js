@@ -6,7 +6,7 @@ const generateToken = (userId) =>{
     return jwt.sign(
         { id: userId },
         process.env.JWT_SECRET,
-        { expiresIn: procress.env.JWT_EXPIRES_IN || "id"}
+        { expiresIn: process.env.JWT_EXPIRES_IN || "id"}
     );
 };
 
@@ -44,7 +44,7 @@ export const registerPassenger = async (req, res) => {
 
         const hasedPassword = await bcrypt.hash(password, 12);
 
-        const user = await User.credit({
+        const user = await User.create({
             firstName,
             lastName,
             email: normalizedEmail,
