@@ -1,20 +1,14 @@
-import { Plane } from "lucide-react";
+const Footer = () => {
+  return (
+    <footer className="footer">
+      <h3>SkyBook</h3>
+      <p>Your journey starts with us.</p>
 
-function footer() {
-    return (
-        <footer className="footer">
-            <div>
-                <h3>
-                    <Plane size={20} /> SkyBook
-                </h3>
-                <p>
-                    Your jourany starts with a better booking experience.
-                </p>
-            </div>
+      <p className="footer-copy">
+        © {new Date().getFullYear()} SkyBook. All rights reserved.
+      </p>
+    </footer>
+  );
+};
 
-            <p>@ 2026 Skybook. Academic project.</p>
-        </footer>
-    );
-}
-
-export default Footer
+export default Footer;

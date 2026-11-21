@@ -1,55 +1,54 @@
-import { Link, useNavigate} from "react-router-dom";
-import { Plane, UserRound } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Plane, UserCircle } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
-function Navbar() {
-    const { isAuthenticated, user, logout } = useAuth();
-    const navigate = useNavigate();
+const Navbar = () => {
+  const { user, isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
 
-    const handleLogout = () => {
-        logout();
-        navigate("/login");
-    };
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
-    return (
-        <nav className="navbar">
-            <Link to="/" className="brand">
-                <Plane size={25} />
-                <span>SkyBook</span>
+  return (
+    <nav className="navbar">
+      <Link to="/" className="brand">
+        <Plane size={27} />
+        <span>SkyBook</span>
+      </Link>
+
+      <div className="nav-links">
+        <Link to="/">Home</Link>
+        <a href="/#about">About</a>
+        <a href="/#services">Services</a>
+
+        {isAuthenticated ? (
+          <>
+            <Link to="/passenger/dashboard">
+              Dashboard
             </Link>
 
-            <div className="nav-links">
-                <Link to = "/">Home</Link>
-                <a href="#services">Services</a>
-                <a href="#about">About</a>
-            </div>
+            <span className="nav-user">
+              <UserCircle size={18} />
+              {user?.firstName}
+            </span>
 
-            <div className="nav-actions">
-                {isAuthenticated ? (
-                    <>
-                        <Link to = "/passenger/dashboard" className="nav-user">
-                            <UserRound size={18} />
-                            {user?.firstNmae}
-                        </Link>
-
-                        <button className="btn-outline" onClick={handleLogout}>
-                            Logout
-                        </button>
-                    </>
-                ) : (
-                    <>
-                        <Link to = "/login" className="nav-login">
-                            Login
-                        </Link>
-
-                        <Link to = "register" className="btn-primary">
-                            Signup
-                        </Link>
-                    </>
-                )}
-            </div>
-        </nav>
-    );
-}
+            <button className="nav-logout" onClick={handleLogout}>
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Login</Link>
+            <Link to="/register" className="nav-register">
+              Register
+            </Link>
+          </>
+        )}
+      </div>
+    </nav>
+  );
+};
 
 export default Navbar;
