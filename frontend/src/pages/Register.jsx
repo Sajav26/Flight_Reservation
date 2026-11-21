@@ -59,7 +59,7 @@ const Register = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="form-row">
                         <div className="form-group">
-                            <Label>First Name</Label>
+                            <label>First Name</label>
                             <input 
                             type="text"
                             name="firstName"
@@ -71,7 +71,7 @@ const Register = () => {
                         </div>
 
                         <div className="form-group">
-                            <Label>Last Name</Label>
+                            <label>Last Name</label>
                             <input 
                             type="text" 
                             name="lastName"
@@ -83,7 +83,7 @@ const Register = () => {
                         </div>
 
                         <div className="form-group">
-                            <Label>Email Address</Label>
+                            <label>Email Address</label>
                             <input 
                             type="email"
                             name="email"
@@ -95,7 +95,7 @@ const Register = () => {
                         </div>
 
                         <div className="form-group">
-                            <Label>Phone Number</Label>
+                            <label>Phone Number</label>
                             <input 
                             type="tel" 
                             name="phone"
@@ -106,7 +106,7 @@ const Register = () => {
                         </div>
 
                         <div className="form-group">
-                            <Label>Password</Label>
+                            <label>Password</label>
                             <input 
                             type="password" 
                             name="password"

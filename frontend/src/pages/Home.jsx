@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import {
     Plane,
     Search,
-    SheildCheck,
+    ShieldCheck,
     Clock,
     Globe
 } from "lucide-react";
@@ -54,7 +54,7 @@ const Home = () => {
                     </div>
 
                     <div className="feature-card">
-                        <SheildCheck size={30} />
+                        <ShieldCheck size={30} />
                         <h3>Secure Booking</h3>
                         <p>Enjoy secure and convenient reservation process.</p>
                     </div>
