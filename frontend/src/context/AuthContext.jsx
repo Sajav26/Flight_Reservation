@@ -1,54 +1,50 @@
-import {
-    createContext,
-    useContext,
-    useState
-} from "react";
-import { jsx } from "react/jsx-runtime";
+import { createContext, useContext, useState } from "react";
 
-const AuthContext = createContext();
+const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(() => {
-        try {
-            return JSON.parse(localStorage.getItem("user")) || null;
-        } catch {
-            return null; 
-        }
-    });
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
 
-    const [token, setToken] = useState(
-        () => localStorage.getItem("token")
-    );
+  const [token, setToken] = useState(
+    () => localStorage.getItem("token") || null
+  );
 
-    const login = (userData, jwtToken) => {
-        localStorage.setItem("user", JSON.stringify(userData));
-        localStorage.setItem("token", jwtToken);
+  const login = (userData, jwtToken) => {
+    localStorage.setItem("user", JSON.stringify(userData));
+    localStorage.setItem("token", jwtToken);
 
-        setUser(userData);
-        setToken(jwtToken);
-    };
+    setUser(userData);
+    setToken(jwtToken);
+  };
 
-    const logout = () => {
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
+  const logout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
 
-        setUser(null);
-        setToken(null);
-    };
+    setUser(null);
+    setToken(null);
+  };
 
-    return (
-        <AuthContext.Provider
-        value={{
-            user,
-            token,
-            login,
-            logout,
-            isAuthenticated: Boolean(user && token)
-        }}
-        >
-            {children}
-        </AuthContext.Provider>
-    );
+  const isAuthenticated = Boolean(user && token);
+
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        token,
+        login,
+        logout,
+        isAuthenticated
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
