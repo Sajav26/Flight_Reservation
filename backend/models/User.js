@@ -48,6 +48,12 @@ const userSchema = new mongoose.Schema(
             default: "passenger"
         },
 
+        airlineId:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Airline",
+            default: null
+        },
+
         isActive:{
             type: Boolean,
             default: true
