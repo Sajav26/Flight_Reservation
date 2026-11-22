@@ -19,7 +19,7 @@ const Dashboard = () => {
                     <span className="dashboard-label">PASSENGER PORTAL</span>
 
                     <h1>
-                        Welcome, {user?.firstName || "Passenger"};
+                        Welcome, {user?.lastName || "Passenger"};
                     </h1>
 
                     <p>
