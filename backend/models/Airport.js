@@ -44,3 +44,5 @@ const aiportSchema = new mongoose.Schema(
 );
 
 const Airport = mongoose.model("Airport", aiportSchema);
+
+export default Airport;
